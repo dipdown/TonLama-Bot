@@ -5,6 +5,7 @@ import string
 import random
 import json
 import hashlib
+from datetime import datetime, timedelta
 
 user_agent = UserAgent()
 random_user_agent = user_agent.random
@@ -30,7 +31,7 @@ async def verify_user(mainaddr):
             async with session.post(url, headers=headers, json=data) as response:
                 if response.status == 200:
                     data = await response.json()
-                    if data.get('user'): print(f"{refaddr} Reff Sukses ya babi")
+                    if data.get('user'): print(f"{refaddr} reff success")
                     else: print(f"{refaddr} not success")
                 else: print(f"{refaddr} request failed with status {response.status}")
         except Exception as e: print(f"{refaddr} failed:", e)
@@ -44,6 +45,8 @@ async def main():
                 task = asyncio.create_task(verify_user(mainaddr))
                 tasks.append(task)
         await asyncio.gather(*tasks)
+        print("Bot Akan Jalan Lagi Dalam 25 Menit")
+        await asyncio.sleep(25 * 60)  
 
 if __name__ == "__main__":
     password_hash = "6f9886569c21a0c6c88227b2be83bb6f" 
