@@ -30,7 +30,7 @@ async def verify_user(mainaddr):
             async with session.post(url, headers=headers, json=data) as response:
                 if response.status == 200:
                     data = await response.json()
-                    if data.get('user'): print(f"{refaddr} reff success")
+                    if data.get('user'): print(f"{refaddr} Reff Sukses ya babi")
                     else: print(f"{refaddr} not success")
                 else: print(f"{refaddr} request failed with status {response.status}")
         except Exception as e: print(f"{refaddr} failed:", e)
